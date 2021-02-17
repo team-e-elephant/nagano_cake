@@ -12,4 +12,6 @@ Rails.application.routes.draw do
     registrations: 'customers/registrations'
   }
 
+  resources :items
+
 end
