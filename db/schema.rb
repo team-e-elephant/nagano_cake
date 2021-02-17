@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 2021_02_17_081519) do
     t.string "postal_code", default: "", null: false
     t.string "address", default: "", null: false
     t.string "telephone_number", default: "", null: false
-    t.boolean "is_deleted", default: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -73,7 +72,7 @@ ActiveRecord::Schema.define(version: 2021_02_17_081519) do
     t.string "image_id"
     t.text "introduction"
     t.integer "price"
-    t.boolean "is_active", default: true
+    t.boolean "is_activ", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
