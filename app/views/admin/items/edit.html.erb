@@ -1,8 +1,8 @@
-<dvi class="container admin-item-new"
+<dvi class="container admin-item-edit"
 
-  <h1 class="title">商品新規登録</h1>
+  <h1 class="title">商品編集</h1>
 <!--商品画像選択 -->
-<%= form_for(@item, url:admin_items_path) do |f| %>
+<%= form_for(@item, url: {controller: "items", action: "update"}) do |f| %>
 
  <div class"image">
     <%= attachment_image_tag @item, :image, class: "img-square", size:"300x300" %>
@@ -25,10 +25,8 @@
       <%= f.text_area :introduction %>
     </div>
     
-    <dvi class="field">
-      <label class="genre">ジャンル</label>
-      <%= f.collection_select :genre_id, @genres, :id, :name,{}%>
-    </dvi>
+    <!--一応作ったやつです<label class="genre">ジャンル</label>
+				<= f.select :genre_id, [["ケーキ","1"],["プリン","2"],["焼き菓子","3"],["キャンディ","4"]], autofocus: true ><br>-->
     
     <div class="field">
       <label class="price">税抜き価格</label>
@@ -43,7 +41,7 @@
     
   <!-- 投稿機能　-->
     <dvi class="sbmit">
-      <%= f.submit "投稿" %>
+      <%= f.submit "変更を保存" %>
     </dvi>
    </div>
 <% end %>
