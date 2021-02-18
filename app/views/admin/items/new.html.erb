@@ -2,8 +2,34 @@
 <h2>商品新規登録</h2>
 
 <!--商品画像選択 -->
+<div>
+<%= form_for(@item, url:admin_items_path) do |f| %>
 
-<%= form_for(@item, url: items_path) do |f| %>
+ <div>
+    <%= attachment_image_tag @item, :image, class: "img-square", size:"300x300" %>
+    <%= f.attachment_field :image, placeholder: "商品画像" %><br>
+ </div>
+</div>
 
+<!--商品登録 -->
 
+<from>
+ <div>
+  <div>
+   <h4>商品名</h4>
+   <%= f.text_field :name %>
+  </div>
+  <div>
+   <h4>商品説明</h4>
+   <%= f.text_area :introduction %>
+  </div>
+  <div>
+   <h4>税抜き価格</h4>
+   <%= f.text_field :price %>
+  </div>
+  <dvi>
+  <%= f.submit '投稿' %>
+  </dvi>
+ </div>
+</from>
 <% end %>
