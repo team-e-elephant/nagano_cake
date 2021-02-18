@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< Updated upstream
 ActiveRecord::Schema.define(version: 2021_02_17_142422) do
 
   create_table "addresses", force: :cascade do |t|
@@ -100,5 +101,8 @@ ActiveRecord::Schema.define(version: 2021_02_17_142422) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+=======
+ActiveRecord::Schema.define(version: 0) do
+>>>>>>> Stashed changes
 
 end
