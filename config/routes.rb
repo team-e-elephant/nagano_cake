@@ -1,32 +1,5 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'order_details/update'
-  end
-  namespace :admin do
-    get 'orders/show'
-    get 'orders/update'
-  end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-  end
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/create'
-    get 'genres/edit'
-    get 'genres/update'
-  end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  get 'home/admin/homes'
-  get 'home/top'
+
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
@@ -38,15 +11,30 @@ Rails.application.routes.draw do
     passwords:     'customers/passwords',
     registrations: 'customers/registrations'
   }
-
   # 管理者
   namespace :admin do
-    resources :items
+    root to: 'homes#top'
+    resources :items, only: [:new, :index,:show, :update, :edit, :create]
+    resources :genres, only: [:index, :update, :edit, :create]
+    resources :customers, only: [:index,:show, :update, :edit]
+    resources :orders, only: [:show, :update]
+    resources :order_details, only: [:update]
   end
 
   # 顧客
   scope module: :public do
-    resources :items
+    root to: 'homes#top'
+    get 'about' => 'homes#about'
+    resources :items, only: [:index, :show]
+    resources :customers, only: [:show, :update, :edit]
+    get 'customers/unsubscribe' => 'customers#unsubscribe'
+    patch 'customers/withdraw' => 'customers#withdraw'
+    resources :cart_items, only: [:update, :index, :destroy, :create]
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+    resources :orders, only: [:new, :index,:show, :create]
+    post 'orders/confirm' => 'orders#confirm'
+    get 'orders/complete' => 'orders#complete'
+    resources :addresses, only: [:index, :update, :edit, :create, :destroy]
   end
 
 end
