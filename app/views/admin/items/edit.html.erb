@@ -1,8 +1,8 @@
-<dvi class="container admin-item-edit"
+<diV class="container admin-item-edit">
 
-  <h1 class="title">商品編集</h1>
+  <h1>商品編集</h1>
 <!--商品画像選択 -->
-<%= form_for(@item, url: {controller: "items", action: "update"}) do |f| %>
+<%= form_with model: [ :admin, @item ], local: true do |f| %>
 
  <div class"image">
     <%= attachment_image_tag @item, :image, class: "img-square", size:"300x300" %>
@@ -15,7 +15,7 @@
 
   <div= class="row">
     
-    <dvi class="field">
+    <div class="field">
       <label ="name">商品名</label>
       <%= f.text_field :name %>
     </div>
@@ -32,17 +32,17 @@
       <label class="price">税抜き価格</label>
       <%= f.text_field :price %>
       <!--<= @item.price %>円<= (@item.price*1.1).floor %>円-->   
-      </div>
+    </div>
     
-    <dvi class="field">
+    <div class="field">
       <label class="is_active">販売ステータス</label>
      <%= f.select :is_active, [["販売中","true"],["売り切れ","false"]], :prompt=>"選択してください" %>
-     </dvi>
+    </div>
     
   <!-- 投稿機能　-->
-    <dvi class="sbmit">
+    <div class="sbmit">
       <%= f.submit "変更を保存" %>
-    </dvi>
+    </div>
    </div>
 <% end %>
-</dvi>
+</div>
