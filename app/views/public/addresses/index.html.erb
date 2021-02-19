@@ -1,0 +1,26 @@
+<h2>配送先登録/一覧</h2>
+
+<%= form_with model:@address,local:ture do |f| %>
+  <div class="form-postal_code row">
+    <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
+    <%= f.text_field :postal_code %>
+  </div>
+
+  <div class="form-address row">
+  	<%= f.label :address, "住所" %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="form-name row">
+  	<%= f.label :name, "宛名" %>
+    <%= f.text_field :name %><%= f.submit "新規登録", class: "btn btn-success" %>
+  </div>
+<% end %>
+
+<% @addresses.each do |address| %>
+  <p><%= address.postal_code %></p>
+  <p><%= address.address %></p>
+  <p><%= address.name %></p>
+  <p><%= link_to '編集する', edit_address_path(address), class:"btn btn-outline-primary" %></p>
+  <p><%= link_to '削除する', address_path(address), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-primary"%></p>
+<% end %>

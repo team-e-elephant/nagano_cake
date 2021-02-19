@@ -1,7 +1,7 @@
 <div>
   <h2>商品一覧</h2>
-  <p>（全count件）</p>
-  <p>商品画像＆URL</p>
+  <p>（全<%= @items.count %>件）</p>
+  <p>商品画像＆URL<%= attachment_image_tag @item, :image, format: "jpg", size: "300x300", fallback: "img/no_image.jpg" %></p>
   <p>商品名</p>
   <p>値段¥</p>
 </div>
