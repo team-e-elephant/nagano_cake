@@ -22,6 +22,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def update
+    @address = Address.find(params[:id])
     if @address.update(address_params)
       redirect_to addresses_path, notice: "編集内容を更新しました"
     else
@@ -38,7 +39,7 @@ class Public::AddressesController < ApplicationController
   private
 
   def address_params
-    params.permit(:postal_code, :address, :name)
+    params.require(:address).permit(:postal_code, :address, :name)
   end
 
   # def ensure_correct_customer
