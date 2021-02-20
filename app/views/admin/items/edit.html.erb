@@ -1,8 +1,9 @@
+<%= form_with model: [ :admin, @item ], local: true do |f| %>
 <diV class="container admin-item-edit">
 
   <h1>商品編集</h1>
 <!--商品画像選択 -->
-<%= form_with model: [ :admin, @item ], local: true do |f| %>
+
 
  <div class"image">
     <%= attachment_image_tag @item, :image, class: "img-square", size:"300x300" %>
@@ -25,18 +26,14 @@
       <%= f.text_area :introduction %>
     </div>
     
-    <!--一応作ったやつです<label class="genre">ジャンル</label>
-				<= f.select :genre_id, [["ケーキ","1"],["プリン","2"],["焼き菓子","3"],["キャンディ","4"]], autofocus: true ><br>-->
-    
+    <label class="genre">ジャンル</label>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name %>
     <div class="field">
       <label class="price">税抜き価格</label>
       <%= f.text_field :price %>
-      <!--<= @item.price %>円<= (@item.price*1.1).floor %>円-->   
     </div>
     
-    <div class="field">
-      <label class="is_active">販売ステータス</label>
-     <%= f.select :is_active, [["販売中","true"],["売り切れ","false"]], :prompt=>"選択してください" %>
+    <%= f.select :is_active, [['販売中', 'true'], ['販売停止中', 'false']] %>
     </div>
     
   <!-- 投稿機能　-->
@@ -44,5 +41,5 @@
       <%= f.submit "変更を保存" %>
     </div>
    </div>
-<% end %>
 </div>
+<% end %>
