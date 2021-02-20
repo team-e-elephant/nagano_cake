@@ -1,20 +1,18 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-md-11 offset-md-1'>
-      <table class='table'>
+    <div class='col-md-9 offset-md-3'>
+      <table class='table table-borderless'>
         <tr>
           <td>会員id</td>
           <td><%= @customer.id %></td>
         </tr>
         <tr>
           <td>氏名</td>
-          <td> <%= @customer.last_name %></td>
-          <td> <%= @customer.first_name %></td>
+          <td> <%= @customer.last_name %>  <%= @customer.first_name %></td>
         </tr>
         <tr>
           <td>フリガナ</td>
-          <td><%= @customer.last_name_kana %></td>
-          <td><%= @customer.first_name_kana %></td>
+          <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
         </tr>
         <tr>
           <td>郵便番号</td>
@@ -37,7 +35,7 @@
           <td><%= @customer.is_deleted %></td>
         </tr>
       </table>
-      <%= link_to "編集する", edit_admin_customer_path %>
+      <%= link_to "編集する", edit_admin_customer_path, class: 'btn btn-success' %>
       <%= link_to "注文履歴一覧を見る", admin_order_path(@customer) %>
     </div>
   </div>
