@@ -6,12 +6,24 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
+    @item = Item.find(params[:item_id])
+    cart_item = @item.cart_items.new(customer_id: current_customer.id)
+    cart_item.save
   end
 
   def update
+    @item = Item.find(params[:item_id])
+    if @cart_item.update(cart_item_params)
+      redirect_to cart_item_path(@cart_item), notice: "You have updated book successfully."
+    else
+      render "index"
+    end
   end
 
   def destroy
+    @item = Item.find(params[:item_id])
+    cart_item = @item.cart_item.find_by(item_id)
+    cart_item.destroy
   end
 
   def destroy_all
@@ -20,6 +32,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   private
-
+    def cart_item_params
+    params.require(:cart_item).permit(:item_id, :customer_id, :amount)
+    end
 
 end
