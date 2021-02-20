@@ -1,7 +1,6 @@
 <div class="container">
-
+<div class="row">
   <h1 class="title">商品新規登録</h1>
-  <div class="row">
       <!--新規登録画面に遷移-->
     <div class="text-right index-new">
        <%= link_to new_admin_item_path do %>
@@ -12,7 +11,7 @@
       <!--商品一覧-->
       <table class="table">
 
-
+<thead>
           <tr>
             <th>商品ID</th>
             <th>商品名</th>
@@ -31,8 +30,9 @@
             <td><%= link_to item.name, admin_item_path(item) %></td>
             <!--価格-->
             <td><%= item.price %></td>
-            <!--ジャンル-->
-            <td><%= item.genre_id %></td>
+            <!--ジャンル---->
+            <!--byebug-->
+            <td><%= item.genre.name %></td>
             <!--ステータス-->
             <td><%= item.is_active ? "販売中" : "販売停止中" %></td>
           </tr>
