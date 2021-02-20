@@ -1,6 +1,5 @@
 <h2>新規会員登録</h2>
 
-<!--url:がcustomer_registration_pathかnew_customer_registration_pathどっちか不明-->
 <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
   <%= render "customers/shared/error_messages", resource: resource %>
 
