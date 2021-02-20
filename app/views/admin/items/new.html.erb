@@ -1,8 +1,9 @@
+<%= form_with model: [ :admin, @item ], local: true do |f| %>
 <diV class="container admin-item-new">
 
   <h1 class="title">商品新規登録</h1>
 <!--商品画像選択 -->
-<%= form_with model: [ :admin, @item ], local: true do |f| %>
+
 
  <div>
     <%= attachment_image_tag @item, :image, class: "img-square", size:"300x300" %>
@@ -45,5 +46,5 @@
       <%= f.submit "投稿" %>
     </div>
    </div>
-<% end %>
 </div>
+<% end %>

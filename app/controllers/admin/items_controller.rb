@@ -1,6 +1,7 @@
 class Admin::ItemsController < ApplicationController
     
     def index
+        @genre = Genre.select(:name)
         @items = Item.page(params[:page]).per(10) 
     end
     
@@ -14,10 +15,11 @@ class Admin::ItemsController < ApplicationController
     end
     
     def create
-        @item = Item.new(item_params)
+        
         @genres = Genre.all
+        @item = Item.new(item_params)
         if @item.save
-            redirect_to admin_items_path(@item)
+            redirect_to admin_items_path
         else
             render :new
         end
