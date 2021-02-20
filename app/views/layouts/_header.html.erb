@@ -1,17 +1,37 @@
-<header>
-    <div>
-      <a class="" href="/"><span>ながのCAKE</span></a>
+<header class=“shadow-sm”>
+  <nav class=“navbar navbar-expand-lg navbar-light”>
+    <div class=“container”>
+      <div class=“collapse navbar-collapse” id=“navbarNavDropdown”>
+        <ul class=“navbar-nav ml-auto”>
+        <% if customer_signed_in? %>
+          <li class=“nav-item”>
+            <%= link_to "マイページ", my_page_path(current_customer.id), class: 'nav-link text-dark' %>
+          </li>
+          <li class=“nav-item”>
+            <%= link_to "商品一覧", items_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class=“nav-item”>
+            <%= link_to "カート", cart_items_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class=“nav-item”>
+            <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
+          </li>
+        <% else %>
+          <li class=“nav-item”>
+          <%= link_to "アバウト", about_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class=“nav-item”>
+          <%= link_to "商品一覧", items_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class=“nav-item”>
+            <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class=“nav-item”>
+            <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
     </div>
-    <div>
-      <ul>
-          <li><%= link_to 'マイページ' %></li>
-          <li><%= link_to '商品一覧' %></li>
-          <li><%= link_to 'カート' %></li>
-          <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
-          <li><%= link_to 'About' %></li>
-          <li><%= link_to '商品一覧' %></li>
-          <li><%= link_to '新規登録' %></li>
-          <li><%= link_to 'ログイン' %></li>
-      </ul>
-    </div>
+  </nav>
 </header>
