@@ -4,13 +4,13 @@
     </div>
     <div>
       <ul>
-          <li><%= link_to 'マイページ' %></li>
+          <li><%= link_to 'マイページ', my_page_path %></li>
           <li><%= link_to '商品一覧' %></li>
           <li><%= link_to 'カート' %></li>
           <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
           <li><%= link_to 'About' %></li>
           <li><%= link_to '商品一覧' %></li>
-          <li><%= link_to '新規登録' %></li>
+          <li><%= link_to '新規登録', new_customer_registration_path %></li>
           <li><%= link_to 'ログイン' %></li>
       </ul>
     </div>
