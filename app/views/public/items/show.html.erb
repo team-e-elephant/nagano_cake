@@ -7,12 +7,15 @@
           <td><%= @item.name %></td>
           <td><%= @item.introduction %></td>
           <td>￥<%= (@item.price*1.1).floor %>（税込）</td>
-          <td><%= form_with model:@cart_item,local:true do |f| %>
-                <%= f.hidden_field :item_id, value: @item.id %>
-                <%= f.select :quantity, options_for_select((1..20).to_a), include_blank: "個数選択" %>
-                <%= f.submit "カートに入れる" %>
-              <% end %>
-          </td>
+        </tr>
+        <tr>
+          <%= form_with model:@cart_item,local:true do |f| %>
+            <td>
+              <%= f.hidden_field :item_id, value: @item.id %>
+              <%= f.select :amount, options_for_select((1..20).to_a), include_blank: "個数選択" %>
+            </td>
+            <td><%= f.submit "カートに入れる" %></td>
+          <% end %>
         </tr>
       </table>
     </div>
