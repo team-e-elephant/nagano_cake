@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     get 'customers/my_page' => 'customers#show', as: 'my_page'
     resources :customers,  only: [:update, :edit]
     get 'customers/unsubscribe' => 'customers#unsubscribe'
-    patch 'customers/withdraw' => 'customers#withdraw'
+    patch '/customers/:id/withdraw' => 'customers#withdraw', as: 'customers_withdraw'
     resources :cart_items, only: [:update, :index, :destroy, :create]
     delete 'cart_items' => 'cart_items#destroy_all', as: 'cart_items_destroy_all'
     resources :orders, only: [:new, :index,:show, :create]
