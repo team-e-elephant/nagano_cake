@@ -1,7 +1,7 @@
 class Public::OrdersController < ApplicationController
 
   def new
-     @order_new = Order.new
+     @order = Order.new
      @addresses = current_customer.addresses
   end
 
@@ -13,16 +13,19 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-   @order = Order.new (order_params)
+   @order = Order.new(order_params)
+   @order.customer_id = current_customer.id
    @order.save
+   redirect_to orders_confirm_path
   end
 
   def confirm
+     @cart_items = current_customer.cart_items
+    # @order = Order.find(order_params)
   end
 
   def complete
   end
-
 
   #情報入力画面でボタンを押して情報をsessionに保存
 
