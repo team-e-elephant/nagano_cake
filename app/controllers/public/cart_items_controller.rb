@@ -6,9 +6,15 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
-    cart_item = @item.cart_items.new(customer_id: current_customer.id)
+    # binding.pry
+    @item = Item.find(params[:cart_item][:item_id])
+    cart_item = current_customer.cart_items.new(cart_item_params)
+    # @cart_item = current_cart_item.cart_items.find_by(item_id: params[:item_id])
+    # if @cart_item.blank?
+    #   @cart_item = current_cart_item.cart_items.build(item_id: params[:item_id])
+    # end
     cart_item.save
+    redirect_to cart_items_path
   end
 
   def update
@@ -21,9 +27,10 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:item_id])
-    cart_item = @item.cart_item.find_by(item_id)
-    cart_item.destroy
+    @cart_item = CartItem.find(params[:id])
+    # cart_item = @cart_item.cart_item.find_by(item_id)
+    @cart_item.destroy
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy_all

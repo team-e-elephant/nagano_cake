@@ -13,6 +13,7 @@ class Public::AddressesController < ApplicationController
   def create
     # binding.pry
     @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
     if @address.save
       redirect_to addresses_path, notice: "新しい配送先を登録しました"
     else
