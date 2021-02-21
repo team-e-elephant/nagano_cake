@@ -1,116 +1,64 @@
-<div class="container">
-	<div class="row">
-		<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-			<h3 class="title">注文情報入力</h3><br>
+<div class='container'>
+	<div>
+		<div>
+			<h3 class='row'>注文情報入力</h3>
 
-			<%= form_with model: @order, local: true do |f| %>
-			<!--支払方法-->
-		  <div>
-		  <p style="font-weight:bold; text-indent:-2em;">支払い方法</p>
-		  <%= radio_button_tag :payment, :クレジットカード %>
-          <%= label_tag :payment, "クレジットカード", {value: :"クレジットカード"} %><br>
-          <%= radio_button_tag :payment, :銀行振込 %>
-          <%= label_tag :payment, "銀行振込", {value: :"銀行振込"} %><br>
-          </div>
+				<%= form_with model: @order, local: true do |f| %>
+					<!--支払方法-->
+					<div class='row'>
+						<p>支払い方法</p>
+						<p><%= radio_button_tag :payment, :クレジットカード %></p>
+						<p><%= label_tag :payment, "クレジットカード", {value: :"クレジットカード"} %></p>
+						<p><%= radio_button_tag :payment, :銀行振込 %></p>
+						<p><%= label_tag :payment, "銀行振込", {value: :"銀行振込"} %></p>
+					</div>
 
-          <!--お届け-->
-<div class="row mt-3">
-          <strong class="red-border px-3">お届け先</strong>
-        </div>
+					<!--お届け-->
+					<div class='row'>
+						<p><strong class="red-border px-3">お届け先</strong></p>
+					</div>
 
+				<div>
 
-     <div class="row">
+					<!--ご自身の住所-->
+					<p><%= f.radio_button(:selected_address, "my address", checked: true) %></p>
+					<p><%= f.label :selected_address, "ご自身の住所", style:"display:inline-block" %></p>
+					<div style="text-indent:2em;">
+						<p><%= current_customer.address %></p>
+					</div>
 
-       <!--自分の住所-->
-           <%= f.radio_botton(:select, "my_address") %><br>
+					<!--登録先住所から選択-->
+					<p><%= f.radio_button(:select, "addresses") %></p>
+					<p><%= f.label :登録先住所から選択 %></p>
+					<div>
+						<p><%= f.collection_select :customer_id, Address.all, :id, :address %></p>
+					</div>
 
+					<!--新しいお届け先-->
+					<p><%= f.radio_button(:selected_address, "new address") %></p>
+					<p><%= f.label :新しいお届け先 %></p>
 
-       <!--登録先住所から選択-->
-				<%= f.radio_button(:select, "addresses") %><br>
-				<%= f.label :登録先住所から選択 %><br>
-				<div style="text-indent:2em;">
-					<%= f.collection_select :customer_id, Address.all, :id, :address %>
+					<div>
+						<p><%= f.label :郵便番号, style: "width: 100px;" %></p>
+						<p><%= f.text_field :postal_number, style: "width: 200px;" %></p>
+					</div>
+
+					<div>
+						<p><%= f.label :住所, style: "width: 100px;"%></p>
+						<p><%= f.text_field :address, style: "width: 500px;" %></p>
+					</div>
+
+					<div>
+						<p><%= f.label :宛名, style: "width: 100px;" %></p>
+						<p><%= f.text_field :name, style: "width: 200px;" %></p>
+					</div>
+
+					<!--確認画面遷移ボタン-->
+					<div class='row'>
+						<p><%= f.submit "確認画面へ進む", class: "btn btn-success" %></p>
+					</div>
 				</div>
-
-
-
-				<!--お届け先-->
-			<p style="font-weight:bold; text-indent:-2em;">お届け先</p>
-
-				<!--ご自身の住所-->
-				<%= f.radio_button(:selected_address, "my address", checked: true) %>
-				<%= f.label :selected_address, "ご自身の住所", style:"display:inline-block" %>
-				<div style="text-indent:2em;">
-					<%= current_customer.address %>
-				</div>
-
-				<!--登録先住所から選択-->
-				<%= f.radio_button(:selected_address, "shipping_address") %>
-				<%= f.label :登録先住所から選択 %><br>
-				<div style="text-indent:2em;">
-					<%= f.collection_select :shipping, @addresses, :id, :address_detail %>
-				</div>
-
-				<!--新しいお届け先-->
-				<%= f.radio_button(:selected_address, "new address") %>
-				<%= f.label :新しいお届け先 %><br>
-
-				<div style="text-indent:1em;">
-					<%= f.label :郵便番号, style: "width: 100px;" %>
-					<%= f.text_field :postal_number, style: "width: 200px;" %>
-				</div>
-
-				<div style="text-indent:1em;">
-					<%= f.label :住所, style: "width: 100px;"%>
-					<%= f.text_field :address, style: "width: 500px;" %>
-				</div>
-
-				<div style="text-indent:1em;">
-					<%= f.label :宛名, style: "width: 100px;" %>
-					<%= f.text_field :name, style: "width: 200px;" %>
-				</div>
-
-				<!--確認画面遷移ボタン-->
-				<div class="text-center">
-					<%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
-				</div>
-
-
-
-
-
-
-
-
-
-
-
-
-				<!--新しいお届け先-->
-				<%= f.radio_button(:select_address, "new address") %>
-				<%= f.label :新しいお届け先 %>
-
-				<div style="text-indent:1em;">
-					<%= f.label :郵便番号 %>
-					<%= f.text_field :postal_code %>
-				</div>
-
-				<div style="text-indent:1em;">
-					<%= f.label :住所 %>
-					<%= f.text_field :address %>
-				</div>
-
-				<div style="text-indent:1em;">
-					<%= f.label :宛名 %>
-					<%= f.text_field :name %>
-				</div>
-
-				<!--確認画面遷移ボタン-->
-				<div class="form-edit">
-					<%= f.submit "確認画面へ進む", class: "btn btn-success" %>
-				</div>
-                </div>
-			<% end %>
+				<% end %>
 		</div>
 	</div>
-	</div>
+</div>
