@@ -1,9 +1,9 @@
+<%= form_with model:@address,local:true do |f| %>
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
   		<h3>配送先編集</h3>
   		<table class='table'>
-    		<%= form_with model:@address,local:true do |f| %>
           <tr>
             <td class="form-edit">
             <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
@@ -25,7 +25,7 @@
               <%= f.submit "変更内容を保存", class: "btn btn-success" %>
             </td>
           </tr>
-        <% end %>
       </table>
   </div>
 </div>
+<% end %>
