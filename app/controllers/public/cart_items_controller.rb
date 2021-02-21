@@ -1,7 +1,7 @@
 class Public::CartItemsController < ApplicationController
 
   def index
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items
     @cart_item = CartItem.new
   end
 
@@ -18,9 +18,9 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:item_id])
+    @cart_item = CartItem.find(params[:id])
     if @cart_item.update(cart_item_params)
-      redirect_to cart_item_path(@cart_item), notice: "You have updated book successfully."
+      redirect_to cart_items_path, notice: "更新に成功しました"
     else
       render "index"
     end
