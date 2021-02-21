@@ -1,7 +1,8 @@
 class Public::OrdersController < ApplicationController
 
   def new
-     @order_new =　Order.new
+     @order_new = Order.new
+     @addresses = current_customer.addresses
   end
 
   def index
@@ -9,12 +10,17 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-
   end
 
   def create
    @order = Order.new (order_params)
    @order.save
+  end
+
+  def confirm
+  end
+
+  def complete
   end
 
 
