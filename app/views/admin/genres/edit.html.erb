@@ -1,6 +1,7 @@
+<%= form_with model: [ :admin, @genre ], local: true do |f| %>
 <h3>ジャンル編集</h3>
   		<table class='table'>
-    		<%= form_with model: [ :admin, @genre ], local: true do |f| %>
+    		
           <tr>
             <td class="form-edit">
               <%= f.label :name, "ジャンル名" %>
@@ -10,7 +11,7 @@
               <%= f.submit "変更を保存", class: "btn btn-success" %>
             </td>
           </tr>
-        <% end %>
       </table>
   </div>
 </div>
+<% end %>
