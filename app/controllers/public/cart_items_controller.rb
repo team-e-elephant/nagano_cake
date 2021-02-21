@@ -7,8 +7,9 @@ class Public::CartItemsController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
-    cart_item = @item.cart_items.new(customer_id: current_customer.id)
-    cart_item.save
+    @cart_item = current_customer.cart_item.new(cart_item_params)
+    @cart_item.item_id = @item.id
+    @cart_item.save
   end
 
   def update
