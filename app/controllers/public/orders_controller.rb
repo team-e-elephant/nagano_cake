@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+<<<<<<< HEAD
 
   def new
      @order = Order.find(params[:id])
@@ -17,5 +18,13 @@ class Public::OrdersController < ApplicationController
   private
   def order_params
       params.require(:order).permit(:customer_id, :shipping_cost, :postal_code, :address, :name, :total_patment, :payment_method, :status)
+=======
+  def index
+    @orders = Order.all
+  end
+  def show
+    @order = order.find(params[:id])
+    
+>>>>>>> origin/fujikura
   end
 end

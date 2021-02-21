@@ -6,6 +6,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
+<<<<<<< HEAD
     # binding.pry
     @item = Item.find(params[:cart_item][:item_id])
     cart_item = current_customer.cart_items.new(cart_item_params)
@@ -15,6 +16,12 @@ class Public::CartItemsController < ApplicationController
     # end
     cart_item.save
     redirect_to cart_items_path
+=======
+    @item = Item.find(params[:item_id])
+    @cart_item = current_customer.cart_item.new(cart_item_params)
+    @cart_item.item_id = @item.id
+    @cart_item.save
+>>>>>>> origin/fujikura
   end
 
   def update
