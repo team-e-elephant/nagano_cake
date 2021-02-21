@@ -1,11 +1,13 @@
 <div class='container'>
   <div class='row justify-content-between'>
-    <h3 class='col-4'>ショッピングカート</h3><p class='col-4'><%= link_to "全て削除", cart_items_destroy_all_path, method: :delete %></p>
+    <h3 class=''>ショッピングカート</h3><p class=''><%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete %></p>
   </div>
+</div>
 
-	<table class='table'>
+<div class='container'>
+	<table class='table bordered'>
 	  <thead>
-      <tr>
+      <tr class=''>
         <th>商品名</th>
         <th>単価（税込）</th>
         <th>数量</th>
@@ -15,15 +17,33 @@
       </tr>
     </thead>
     <tbody>
+      <% @sum = 0 %>
 	    <% @cart_items.each do |cart_item| %>
-		    <tr>
+		    <tr class=''>
 		        <td><%= attachment_image_tag(cart_item.item, :image, :fill, 45, 45, fallback: "img/no_image.jpg") %><%= cart_item.item.name %></td>
 		        <td><%= (cart_item.item.price*1.1).floor %></td>
-		        <td><%= cart_item.amount %></td>
+		        <td><%= form_with model:cart_item, url: cart_item_path(cart_item), local:true do |f| %>
+  		            <%= f.number_field :amount, min: 1 %>
+  		            <%= f.submit "変更" %>
+  		          <% end %>
+		        </td>
 		        <td><%= (cart_item.item.price*1.1*cart_item.amount).floor %></td>
 		        <td><%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-primary"%></td>
+		        <% @sum += (cart_item.item.price*1.1*cart_item.amount).floor %>
 		    </tr>
 	    <% end %>
     </tbody>
   </table>
+</div>
+
+<div class='container'>
+  <div class='row justify-content-between'>
+    <tr>
+      <td><%= link_to '買い物を続ける', items_path, class: "back" %></td>
+      <td>合計金額 <%= @sum %></td>
+    </tr>
+    <tr>
+      <%= link_to '情報入力に進む', new_order_path, class: "btn btn-success" %>
+    </tr>
+  </div>
 </div>
