@@ -9,12 +9,13 @@
 						<p><strong>支払い方法</strong></p>
 					</div>
 
-					<div class='row'>
 						<!--<p><= f.collection_radio_buttons :payment_method, Order.payment_methods_i18n, :first , :last %></p>-->
-						<p><%= f.radio_button(:payment_method, "クレジットカード", checked: true) %></p>
-						<p><%= f.radio_button(:payment_method, "銀行振込" ) %></p>
+					<div class='row'>
+						<p><%= f.radio_button(:payment_method, "クレジットカード", checked: true) %><%= f.label :クレジットカード %></p>
 					</div>
-
+					<div class='row'>
+						<p><%= f.radio_button(:payment_method, "銀行振込" ) %><%= f.label :銀行振込 %></p>
+					</div>
 					<!--お届け-->
 					<div class='row'>
 						<p><strong>お届け先</strong></p>
