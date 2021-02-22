@@ -13,28 +13,15 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-   @order = Order.new
-   @sum = params[:order][:sum]
+   @order = Order.new(order_params)
    @order.customer_id = current_customer.id
-   @cart_items = current_customer.cart_items
-   @order.shipping_cost = 800
-   @order.total_payment = (800+ @sum.to_i)
    @order.save
-   redirect_to orders_complete_path
+   redirect_to orders_confirm_path
   end
 
   def confirm
     @cart_items = current_customer.cart_items
     @order = Order.new(order_params)
-    if params[:order][:selected_address] == "0"
-      @order.address = current_customer.address
-    elsif params[:order][:selected_address] == "1"
-      address=Address.find(params[:order][:customer_id])
-      @order.address = address.address
-      @order.name = address.name
-      @order.postal_code = address.postal_code
-    elsif params[:order][:selected_address] == "2"
-    end
   end
 
   def complete
