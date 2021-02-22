@@ -1,50 +1,60 @@
-<%= form_with model: [ :admin, @item ], local: true do |f| %>
-<diV class="container admin-item-new">
 
-  <h1 class="title">商品新規登録</h1>
+<%= form_with model: [ :admin, @item ], local: true do |f| %>
+<div class="container-row">
+  
+    <div class="row">
+      <h3 class="ml-5 mb-5 bg-light">商品新規登録</h3>
+    </div>
 <!--商品画像選択 -->
 
-
- <div>
+  <div class="row">
     <%= attachment_image_tag @item, :image, class: "img-square", size:"300x300" %>
     <%= f.attachment_field :image, placeholder: "商品画像" %><br>
- </div>
-</div>
+  </div>
 
 <!--商品登録 -->
-
-
+<div class="row">
+  <p class="col-lg-2">商品名</p>
+  <div class="field">
+    <%= f.text_field :name %>
+  </div>
+</div>
+  
   <div class="row">
-    
+    <p class="col-lg-2">商品説明</p>
     <div class="field">
-      <label ="name">商品名</label>
-      <%= f.text_field :name %>
+     <%= f.text_area :introduction %>
     </div>
-    
+  </div>
+  
+  <div class="row">
+    <p class="col-lg-2">ジャンル</p>
     <div class="field">
-      <label class="introduction">商品説明</label>
-      <%= f.text_area :introduction %>
+    <%= f.collection_select :genre_id, @genres, :id, :name %>
     </div>
-    
-    <div class="field">
-      <label class="genre">ジャンル</label>
-      <%= f.collection_select :genre_id, @genres, :id, :name %>
-    </div>
-    
-    <div class="field">
-      <label class="price">税抜き価格</label>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-2">
+      <p class="field">税抜き価格</p>
       <%= f.text_field :price %>
     </div>
-    
-    <div class="field">
-      <label class="is_active">販売ステータス</label>
-     <%= f.select :is_active, [["販売中","true"],["売り切れ","false"]], :prompt=>"選択してください" %>
+  </div> 
+  
+  <div class="row">
+    <div class="col-lg-2">
+      <p class="field">販売ステータス</p>
+      <%= f.select :is_active, [["販売中","true"],["売り切れ","false"]], :prompt=>"選択してください" %>
     </div>
-    
+  </div>
+  
   <!-- 投稿機能　-->
-    <div class="sbmit">
-      <%= f.submit "投稿" %>
+  <div class="row mt-3">
+    <div class="col">
+      <%= f.submit "投稿", class: "w-25 btn btn-success" %>
     </div>
-   </div>
-</div>
+  </div>
+  
 <% end %>
+
+</div>
