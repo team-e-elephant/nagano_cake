@@ -94,12 +94,11 @@ ActiveRecord::Schema.define(version: 2021_02_17_142422) do
     t.string "address"
     t.string "name"
     t.integer "shipping_cost"
-    t.integer "total_payment", default: 0
-    t.integer "payment_method"
+    t.integer "total_payment"
+    t.integer "payment_method", default: 0
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
 end
- 
