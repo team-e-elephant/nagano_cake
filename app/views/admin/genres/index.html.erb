@@ -1,46 +1,29 @@
-<diV class="container admin-item-new">
-
-  <h3>ジャンル一覧・追加</h3>
-<!--商品画像選択 -->
-<table>
-<%= form_with model: [ :admin, @genre ], local: true do |f| %>
-</div>
-
-<!--商品登録 -->
-
-
+<div class="container">
   <div class="row">
-    <table class="field">
-      <label ="name">ジャンル新規登録</label>
-      <%= f.text_field :name %>
-    </table>
-    
-  <!-- 投稿機能　-->
-    <div class="sbmit">
-      <%= f.submit "投稿" %>
-    </div>
-   </div>
-<% end %>
-</div>
+    <h5 class="mb-5">ジャンル一覧・追加</h5>
+  </div>
 
-      <!--商品一覧-->
-      <table class="table">
-
-<thead>
-    <tr>
-    <th>ジャンル</th>
+  <%= form_with model: [ :admin, @genre ], local: true do |f| %>
+  <table>
+    <tr class="row">
+      <th class=mr-5>ジャンル名</th>
+      <td class="mr-5">
+        <%= f.text_field :name %>
+      </td>
+      <td class="sbmit">
+        <%= f.submit "新規登録", class: "btn btn-success" %>
+      </td>
     </tr>
-</thead>
-
+  </table>
+  <% end %>
+    <table class="table">
+      <tr>
+        <th>ジャンル</th>
         <% @genres.each do |genre| %>
-        <tbody>
-          <tr>
-            <!--ジャンル-->
-            <td><%= genre.name %></td>
-            <td class="text-center"><%= link_to '編集する', edit_admin_genre_path(genre.id) %></td>
-          </tr>
-        </tbody>
-
+        <td><%= genre.name %>
+        <%= link_to '編集する', edit_admin_genre_path(genre.id), class: "ml-5 btn btn-success" %>
+        </td>
+      </tr>
         <% end %>
-      </table>
-</table>
+    </table>
+</div>
