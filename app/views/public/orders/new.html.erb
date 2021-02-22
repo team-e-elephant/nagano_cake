@@ -7,10 +7,8 @@
 					<!--支払方法-->
 					<div class='row'>
 						<p>支払い方法</p>
-						<p><%= radio_button_tag :payment, :クレジットカード %></p>
-						<p><%= label_tag :payment, "クレジットカード", {value: :"クレジットカード"} %></p>
-						<p><%= radio_button_tag :payment, :銀行振込 %></p>
-						<p><%= label_tag :payment, "銀行振込", {value: :"銀行振込"} %></p>
+						<!--クレジットカード-->
+						<p><%= f.collection_radio_buttons :payment_method, Order.payment_methods_i18n, :first, :last %></p>
 					</div>
 
 					<!--お届け-->
