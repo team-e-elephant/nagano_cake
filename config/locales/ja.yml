@@ -4,6 +4,7 @@ ja:
       payment_method:
         credit: クレジットカード
         bank: 銀行振込
+
       status:
         pending: 入金待ち
         confirmed: 入金確認
