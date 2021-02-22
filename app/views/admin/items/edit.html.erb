@@ -1,45 +1,61 @@
 <%= form_with model: [ :admin, @item ], local: true do |f| %>
 <diV class="container admin-item-edit">
 
-  <h1>商品編集</h1>
+<div class="row">
+  <h3 class="ml-5 mb-5 vg-light">商品編集</h3>
 <!--商品画像選択 -->
+</div>
 
-
+<div class="row">
  <div class"image">
-    <%= attachment_image_tag @item, :image, class: "img-square", size:"300x300" %>
+    <%= attachment_image_tag @item, :image, class: "img-square", size:"200x200" %>
     <%= f.attachment_field :image, placeholder: "商品画像" %><br>
  </div>
 </div>
-
 <!--商品登録 -->
 
 
-  <div= class="row">
-    
-    <div class="field">
-      <label ="name">商品名</label>
+  <div class="row">
+      <p class="col-lg-2">商品名</P>
+      <div class="field">
       <%= f.text_field :name %>
-    </div>
+      </div>
+  </div>
     
-    <div class="field">
-      <label class="introduction">商品説明</label>
+  <div class="row">
+      <p class="col-lg-2">商品説明</p>
+      <div class="field">
       <%= f.text_area :introduction %>
-    </div>
+      </div>
+  </div>
     
-    <label class="genre">ジャンル</label>
-        <%= f.collection_select :genre_id, Genre.all, :id, :name %>
-    <div class="field">
-      <label class="price">税抜き価格</label>
+  <div class="row">
+      <p class="col-lg-2">ジャンル</p>
+      <div class="field">
+      <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+      </div>
+  </div>
+    
+  <div class="row">
+      <p class="col-lg-2">税抜き価格</p>
+      <div class="field">
       <%= f.text_field :price %>
-    </div>
+      </div>
+  </div>
     
-    <%= f.select :is_active, [['販売中', 'true'], ['販売停止中', 'false']] %>
-    </div>
-    
+  <div class="row">
+      <p class="col-lg-2">販売ステータス</p>
+      <div class=field>
+      <%= f.select :is_active, [['販売中', 'true'], ['販売停止中', 'false']] %>
+      </div>
+  </div>
+  
   <!-- 投稿機能　-->
-    <div class="sbmit">
-      <%= f.submit "変更を保存" %>
+    <div class="row mt-3">
+      <div class="col">
+      <%= f.submit "変更を保存", class: "btn btn-success"%>
     </div>
    </div>
-</div>
+
 <% end %>
+</div>
