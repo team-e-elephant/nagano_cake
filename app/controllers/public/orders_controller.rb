@@ -13,10 +13,11 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-   @order = Order.new
+   @order = Order.new(order_params)
    @sum = params[:order][:sum]
    @order.customer_id = current_customer.id
    @cart_items = current_customer.cart_items
+  # @order.name = address.name
    @order.shipping_cost = 800
    @order.total_payment = (800+ @sum.to_i)
    @order.save
