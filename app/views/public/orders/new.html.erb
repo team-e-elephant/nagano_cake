@@ -10,7 +10,9 @@
 					</div>
 
 					<div class='row'>
-						<p><%= f.collection_radio_buttons :payment_method, Order.payment_methods_i18n, :first , :last %></p>
+						<!--<p><= f.collection_radio_buttons :payment_method, Order.payment_methods_i18n, :first , :last %></p>-->
+						<p><%= f.radio_button(:payment_method, "クレジットカード", checked: true) %></p>
+						<p><%= f.radio_button(:payment_method, "銀行振込" ) %></p>
 					</div>
 
 					<!--お届け-->
@@ -20,21 +22,21 @@
 
 					<!--ご自身の住所-->
 					<div class='row'>
-						<p class="mr-2"><%= f.radio_button(:selected_address, "my address", checked: true) %></p>
-						<p><%= f.label :selected_address, "ご自身の住所" %></br>
+						<p class="mr-2"><%= f.radio_button(:selected_address, 0, checked: true) %></p>
+						<p><%= f.label :ご自身の住所 %></br>
 						<%= current_customer.address %></p>
 					</div>
 
 					<!--登録先住所から選択-->
 					<div class='row'>
-						<p class="mr-2"><%= f.radio_button(:selected_address, "addresses") %></p>
+						<p class="mr-2"><%= f.radio_button(:selected_address, 1 ) %></p>
 						<p><%= f.label :登録先住所から選択 %></br>
-						<%= f.collection_select :customer_id, Address.all, :id, :address %></p>
+						<%= f.collection_select :customer_id, current_customer.addresses, :id, :address %></p>
 					</div>
 
 					<!--新しいお届け先-->
 					<div class='row'>
-						<p class="mr-2"><%= f.radio_button(:selected_address, "new address") %></p>
+						<p class="mr-2"><%= f.radio_button(:selected_address, 2 ) %></p>
 						<p><%= f.label :新しいお届け先 %></p>
 					</div>
 

@@ -47,7 +47,7 @@
       </tr>
       <tr>
         <th class="table-secondary">請求金額</th>
-        <td>25,60</td>
+        <td><%= @sum+800 %></td>
       </tr>
 
     </table>
@@ -68,12 +68,11 @@
           <strong>お届け先</strong>
         </td>
       <td><%= @order.address %></td>
+      <td><%= @order.name %></td>
       </tr>
     </table>
   </div>
   <div class="row">
-    <p>注文を確定する</p>
+    <%= link_to '注文を確定する', orders_complete_path, class: "btn btn-success" %>
   </div>
-
-
 </div>

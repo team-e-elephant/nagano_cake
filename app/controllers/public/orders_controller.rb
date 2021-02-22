@@ -16,12 +16,22 @@ class Public::OrdersController < ApplicationController
    @order = Order.new(order_params)
    @order.customer_id = current_customer.id
    @order.save
-   redirect_to orders_confirm_path
+   redirect_to orders_complete_path
   end
 
   def confirm
     @cart_items = current_customer.cart_items
     @order = Order.new(order_params)
+    if params[:order][:selected_address] == "0"
+      @order.address = current_customer.address
+    elsif params[:order][:selected_address] == "1"
+      address=Address.find(params[:order][:customer_id])
+      @order.address = address.postal_code+address.address
+      @order.name = address.name
+    # binding.pry
+    elsif params[:order][:selected_address] == "2"
+    end
+    # binding.pry
   end
 
   def complete
