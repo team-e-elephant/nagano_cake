@@ -14,7 +14,7 @@
     <% @orders.each do |order| %>
     <tr>
       <td><%= order.created_at %></td>
-      <td><%= order.postal_code %><%= order.address %><%= order.name %></td>
+      <td><%= order.postal_code %><%= order.address %><%= order.last.name %></td>
       <td></td>
       <td><%= order.total_payment %></td>
       <td><%= order.status %></td>
