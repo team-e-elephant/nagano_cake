@@ -1,9 +1,8 @@
 class Admin::OrderDetailsController < ApplicationController
   def update
-    @order = Order.find(params[:id])
-    @order_details= @order.order_details
+    @order_detail = OrderDetail.find(params[:id])
     # byebug
-    @order_details.update(order_detail_params)
+    @order_detail.update(order_detail_params)
     redirect_back(fallback_location: root_path)
   end
   private
