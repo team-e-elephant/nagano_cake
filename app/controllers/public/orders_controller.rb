@@ -13,7 +13,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-   @order = Order.new
+   @order = Order.new(order_params)
    @sum = params[:order][:sum]
    @order.customer_id = current_customer.id
    @cart_items = current_customer.cart_items
