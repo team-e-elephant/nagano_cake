@@ -10,11 +10,28 @@
 </div>
 
 <main>
-  <section class="new-item">
-    <h2>新着商品</h2>
-    <div class ="new-item-box">
-      <!--items一覧のRender-->
+  <div class='container'>
+    <h2 class='row'>新着商品</h2>
+    <div class='row'>
+      <% @items.each do |item| %>
+      <table class='col-3'>
+        <tr>
+          <td><%= link_to item_path(item) do %>
+            <%= attachment_image_tag(item, :image, :fill, 100, 100, fallback: "img/no_image.jpg") %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= item.name %></th>
+        </tr>
+        <tr>
+          <th>￥<%= item.price %></th>
+        </tr>
+      </table>
+      <% end %>
     </div>
-  </section>
-  <%= link_to 'すべての商品を見る >' %>
+  </div>
+    <div class='d-flex justify-content-end mr-5 pr-5'>
+      <%= link_to 'すべての商品を見る >', items_path %>
+    </div>
 </main>
