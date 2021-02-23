@@ -37,10 +37,14 @@
     <% @order_details.each do |order_detail| %>
       <tr>
         <td><%= order_detail.item.name %></td>
-        <td><%= order_detail.item.price*1.1 %></td>
+        <td><%= (order_detail.item.price*1.1).floor %></td>
         <td><%= order_detail.amount %></td>
-        <td><%= order_detail.item.price*order_detail.amount*1.1 %></td>
-        <td><%= order_detail.making_status %></td>
+        <td><%= (order_detail.item.price*order_detail.amount*1.1).floor %></td>
+        <td><%=  form_with model:[:admin,order_detail], local:true do |f| %>
+            <%= f.select :making_status, {"制作不可": 0, "制作待ち": 1, "製作中": 2,"制作完了": 3}, {selected: 0}, { class: 'form-control' , required: true } %>
+            <%= f.submit "更新" %>
+            <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
