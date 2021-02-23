@@ -11,11 +11,13 @@
               <td>￥<%= (@item.price*1.1).floor %>（税込）</td>
             </tr>
             <tr>
+              <% if customer_signed_in? %>
                 <td>
                   <%= f.hidden_field :item_id, value: @item.id %>
                   <%= f.select :amount, options_for_select((1..20).to_a), include_blank: "個数選択" %>
                 </td>
                 <td><%= f.submit "カートに入れる" %></td>
+              <% end %>
             </tr>
           </tbody>
         </table>
