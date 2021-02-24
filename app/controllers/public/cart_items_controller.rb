@@ -10,13 +10,23 @@ class Public::CartItemsController < ApplicationController
 
   def create
     @item = Item.find(params[:cart_item][:item_id])
-    cart_item = current_customer.cart_items.new(cart_item_params)
-    # @cart_item = current_cart_item.cart_items.find_by(item_id: params[:item_id])
-    # if @cart_item.blank?
-    #   @cart_item = current_cart_item.cart_items.build(item_id: params[:item_id])
-    # end
-    cart_item.save
-    redirect_to cart_items_path
+    @cart_item = current_customer.cart_items.new(cart_item_params)
+    # binding.pry
+    if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
+        current_customer.cart_items.each do |cart_item|
+        if cart_item == current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+            total = cart_item.amount.to_i + cart_item_params[:amount].to_i
+            cart_item.update_attributes(amount: total)
+            redirect_to cart_items_path
+        end
+        end
+    else
+      if @cart_item.save
+        redirect_to cart_items_path
+      else
+        redirect_back(fallback_location: root_path)
+      end
+    end
   end
 
   def update
