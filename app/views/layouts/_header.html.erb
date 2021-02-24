@@ -1,7 +1,13 @@
 <nav class="navbar navbar-expand-lg">
     <div class=“navbar-brand”>
-        <%= link_to root_path do %>
-        <%= image_tag 'img/nagano_logo.png', size: "400x100" %>
+        <% if admin_signed_in? %>
+            <%= link_to admin_root_path do %>
+            <%= image_tag 'img/nagano_logo.png', size: "400x100" %>
+            <% end %>
+        <% else %>
+            <%= link_to root_path do %>
+            <%= image_tag 'img/nagano_logo.png', size: "400x100" %>
+            <% end %>
         <% end %>
     </div>
 
