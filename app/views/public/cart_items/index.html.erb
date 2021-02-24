@@ -1,34 +1,33 @@
 <div class='container'>
   <div class='row justify-content-between'>
-    <h3 class=''>ショッピングカート</h3><p class=''><%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete %></p>
+    <h3 class=''>ショッピングカート</h3><p class=''><%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: 'btn btn-danger' %></p>
   </div>
-</div>
 
-<div class='container'>
-	<table class='table bordered'>
-	  <thead>
-      <tr class=''>
+
+<div class='row'>
+	<table class='table table-bordered'>
+	  <thead class='table-secondary'>
+      <tr>
         <th>商品名</th>
         <th>単価（税込）</th>
         <th>数量</th>
         <th>小計</th>
-        <th></th>
-        <th colspan="3"></th>
+        <th><!--ボタン用--></th>
       </tr>
     </thead>
     <tbody>
       <% @sum = 0 %>
 	    <% @cart_items.each do |cart_item| %>
-		    <tr class=''>
-		        <td><%= attachment_image_tag(cart_item.item, :image, :fill, 45, 45, fallback: "img/no_image.jpg") %><%= cart_item.item.name %></td>
+		    <tr>
+		        <td><%= attachment_image_tag(cart_item.item, :image, :fill, 45, 45, fallback: "img/no_image.jpg",size: "45x45") %><%= cart_item.item.name %></td>
 		        <td><%= (cart_item.item.price*1.1).floor %></td>
 		        <td><%= form_with model:cart_item, url: cart_item_path(cart_item), local:true do |f| %>
   		            <%= f.number_field :amount, min: 1 %>
-  		            <%= f.submit "変更" %>
+  		            <%= f.submit "変更", class: 'btn btn-success' %>
   		          <% end %>
 		        </td>
 		        <td><%= (cart_item.item.price*1.1*cart_item.amount).floor %></td>
-		        <td><%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-primary"%></td>
+		        <td><%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger"%></td>
 		        <% @sum += (cart_item.item.price*1.1*cart_item.amount).floor %>
 		    </tr>
 	    <% end %>
@@ -36,14 +35,21 @@
   </table>
 </div>
 
-<div class='container'>
+
   <div class='row justify-content-between'>
-    <tr>
-      <td><%= link_to '買い物を続ける', items_path, class: "back" %></td>
-      <td>合計金額 <%= @sum %></td>
-    </tr>
-    <tr>
-      <%= link_to '情報入力に進む', new_order_path, class: "btn btn-success" %>
-    </tr>
+    <div>
+    <%= link_to '買い物を続ける', items_path, class: " btn btn-primary back" %>
+    </div>
+    <div class='col-md-4'>
+    <table class='table table-bordered'>
+      <tr>
+        <th class='table-secondary'>合計金額</th>
+        <td><%= @sum %></td>
+      </tr>
+    </table>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='mt-5 mx-auto'><%= link_to '情報入力に進む', new_order_path, class: "btn btn-success" %></div>
   </div>
 </div>

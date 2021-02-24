@@ -1,60 +1,41 @@
-
+<div class="container">
 <%= form_with model: [ :admin, @item ], local: true do |f| %>
-<div class="container-row">
-  
-    <div class="row">
-      <h3 class="ml-5 mb-5 bg-light">商品新規登録</h3>
-    </div>
-<!--商品画像選択 -->
-
-  <div class="row">
-    <%= attachment_image_tag @item, :image, class: "img-square", size:"300x300" %>
-    <%= f.attachment_field :image, placeholder: "商品画像" %><br>
-  </div>
-
-<!--商品登録 -->
-<div class="row">
-  <p class="col-lg-2">商品名</p>
-  <div class="field">
-    <%= f.text_field :name %>
-  </div>
-</div>
-  
-  <div class="row">
-    <p class="col-lg-2">商品説明</p>
-    <div class="field">
-     <%= f.text_area :introduction %>
-    </div>
-  </div>
-  
-  <div class="row">
-    <p class="col-lg-2">ジャンル</p>
-    <div class="field">
-    <%= f.collection_select :genre_id, @genres, :id, :name %>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-lg-2">
-      <p class="field">税抜き価格</p>
-      <%= f.text_field :price %>
-    </div>
-  </div> 
-  
-  <div class="row">
-    <div class="col-lg-2">
-      <p class="field">販売ステータス</p>
-      <%= f.select :is_active, [["販売中","true"],["売り切れ","false"]], :prompt=>"選択してください" %>
+  <div class='row'>
+    <div class='mx-auto'>
+      <table class='table　table-borderless'>
+        <tr>
+          <th>商品画像</th>
+          <td>
+            <%= attachment_image_tag @item, :image, class: "img-square", size:"300x300" %>
+            <%= f.attachment_field :image, placeholder: "商品画像" %>
+          </td>
+        </tr>
+         <tr>
+          <th>商品名</th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+         <tr>
+          <th>商品説明</th>
+          <td><%= f.text_area :introduction %></td>
+        </tr>
+         <tr>
+          <th>ジャンル</th>
+          <td><%= f.collection_select :genre_id, @genres, :id, :name %></td>
+        </tr>
+         <tr>
+          <th>税抜価格</th>
+          <td><%= f.text_field :price %></td>
+        </tr>
+         <tr>
+          <th>販売ステータス</th>
+          <td><%= f.select :is_active, [["販売中","true"],["売り切れ","false"]], :prompt=>"選択してください" %></td>
+        </tr>
+      </table>
     </div>
   </div>
-  
-  <!-- 投稿機能　-->
-  <div class="row mt-3">
-    <div class="col">
-      <%= f.submit "投稿", class: "w-25 btn btn-success" %>
+    <div class='row'>
+      <%= f.submit "変更を保存", class: "w-25 btn btn-success mx-auto"%>
     </div>
   </div>
-  
 <% end %>
-
 </div>
