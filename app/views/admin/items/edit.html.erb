@@ -7,7 +7,7 @@
         <tr>
           <th>商品画像</th>
           <td>
-            <%= attachment_image_tag @item, :image, class: "img-square", size:"300x300" %>
+            <%= attachment_image_tag @item, :image, class: "img-square", size:"300x200" %>
             <%= f.attachment_field :image, placeholder: "商品画像" %>
           </td>
         </tr>
@@ -25,7 +25,7 @@
         </tr>
          <tr>
           <th>税抜価格</th>
-          <td><%= f.text_field :price %></td>
+          <td><%= f.text_field :price %>円</td>
         </tr>
          <tr>
           <th>販売ステータス</th>
@@ -34,8 +34,8 @@
       </table>
     </div>
   </div>
-    <div class='row'>
-      <%= f.submit "変更を保存", class: "btn btn-success mx-auto"%>
+    <div class='row justify-content-center'>
+      <%= f.submit "変更を保存", class: "col-2 mr-5 btn btn-success"%>
     </div>
   </div>
 <% end %>
