@@ -1,17 +1,22 @@
-<%= form_with model: [ :admin, @genre ], local: true do |f| %>
-<h3>ジャンル編集</h3>
-  		<table class='table'>
-    		
+<div class="container">
+  <div class="row">
+    <h4 class="mb-5 bg-light">ジャンル編集</h4>
+  </div>
+  <%= form_with model: [ :admin, @genre ], local: true do |f| %>
+    <div class="row">
+      <div class="col-md-5">
+    		<table class='table table-borderless'>
           <tr>
-            <td class="form-edit">
-              <%= f.label :name, "ジャンル名" %>
+            <th>ジャンル名</th>
+            <td>
               <%= f.text_field :name %>
             </td>
-            <td class="form-edit">
+            <td>
               <%= f.submit "変更を保存", class: "btn btn-success" %>
             </td>
           </tr>
-      </table>
-  </div>
+        </table>
+      </div>
+    </div>
+  <% end %>
 </div>
-<% end %>
