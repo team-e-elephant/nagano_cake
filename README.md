@@ -1,24 +1,14 @@
-# README
+### ながのケーキECサイト  
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##使用言語  
+*Ruby on Rails 5.2.4  
 
-Things you may want to cover:
+##実装機能  
+*顧客側の注文機能およびログイン機能  
+*管理者側の商品登録および注文管理機能  
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##サイト説明
+お子様からお年寄りの方までお召し上がりいただけるよう、  
+様々なバリエーションをご用意しております。  
+また、全国へ発送可能ですので「いつ」でも「どこ」でもご注文いただけます。  
+ぜひご注文ください。  
